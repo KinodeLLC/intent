@@ -124,6 +124,8 @@ class IntentParser(Parser):
         g.statement = self.parse_text_literal("the goal statement")
 
         while True:
+            # Doc comments may sit between a goal's clauses.
+            self.skip_docs()
             if self.at_ctx("owner"):
                 self.next()
                 g.owner = self.parse_text_literal("an owner")
