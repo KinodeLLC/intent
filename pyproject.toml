@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "intent"
 version = "0.1.0"
-description = "Intent: a specification language whose acceptance criteria are checked against the implementations that claim to satisfy them."
+description = "spec layer. scenarios that run as tests, goals pinned to the content hash of the code under them."
 readme = "README.md"
 requires-python = ">=3.11"
 license = { text = "Apache-2.0" }

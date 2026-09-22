@@ -1,10 +1,10 @@
 """
-Intent: the specification layer.
+intent, the spec layer.
 
-Scenarios lower to executable Canon tests, goals trace to the definitions that
-satisfy them, and those traces record content hashes at acceptance - so a
-change to the code behind a goal reports the goal as stale automatically,
-rather than relying on someone noticing.
+scenarios lower to canon tests that run, goals trace to the definitions that
+satisfy them, and those traces record content hashes when somebody accepts
+them, so changing the code behind a goal reports it stale on its own instead of
+waiting for somebody to notice.
 """
 
 __version__ = "0.1.0"

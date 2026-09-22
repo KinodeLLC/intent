@@ -1,16 +1,14 @@
 # Changelog
 
-Keep a Changelog format, SemVer. Pre-1.0: breaking changes bump the minor.
+keep a changelog format, semver. before 1.0 a breaking change bumps the minor.
 
 ## [Unreleased]
 
 ## [0.1.0] - 2026-09-21
 
 ### Added
-- Goals with owners, rationale, acceptance and rejection notes.
-- Scenarios that lower to executable Canon tests. A goal with no scenarios does
-  not compile.
-- Traces pinned to definition content hashes, so a change to traced code
-  reports the goal as stale even when every scenario still passes.
-- Non-functional requirements checked against declared cost.
-- Conformance reporting, including definitions no goal traces to.
+- goals with owners, rationale, accepts and rejects
+- scenarios that lower to runnable canon tests
+- traces pinned to content hashes, so changed code reports the goal stale
+- non functional requirements checked against declared cost
+- conformance reporting, including code no goal traces to

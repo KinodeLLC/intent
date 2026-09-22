@@ -1,28 +1,28 @@
 """
-Intent: the specification layer.
+intent, the spec layer.
 
-A specification that is only prose drifts from the code, and everyone knows it
-drifts, so after a while nobody reads it. Intent makes drift detectable rather
-than asking people to prevent it:
+a spec that is only prose drifts away from the code, everybody knows it drifts,
+and after a while nobody opens it. this makes the drift something you find out
+about rather than something people are supposed to prevent.
 
-  * Scenarios lower to executable Canon tests. A specification that cannot be
-    run is not a specification here, it is a comment.
+scenarios lower to canon tests that run, so a spec you cannot run is not a spec
+in here, it is a comment.
 
-  * A goal traces to the definitions that satisfy it, and records their content
-    hashes at the moment it was accepted. When a traced definition changes, the
-    goal is reported as needing re-acceptance -- automatically, by hash
-    comparison, rather than by someone noticing.
+a goal traces to the definitions that satisfy it and writes down their content
+hashes at the moment somebody accepted it. when one of those definitions
+changes the goal comes back needing acceptance again, off a hash comparison
+rather than off somebody noticing.
 
-  * Definitions with no goal tracing to them are listed. Code nobody asked for
-    is as much a finding as a goal nobody implemented.
+definitions with no goal tracing to them get listed, since code nobody asked
+for is as much a finding as a goal nobody built.
 
-  * Non-functional requirements are checked against the declared cost of the
-    definitions they trace to, so "must complete within 250ms" is compared to
-    something the compiler already knows instead of being aspirational.
+non functional requirements get checked against the declared cost of whatever
+they trace to, so must complete within 250ms is compared against something the
+compiler already knows instead of sitting there as a wish.
 
-The result is that the specification is the artifact a human reviews and the
-agent works from, and the question "is the implementation still what we asked
-for" has a mechanical answer.
+what you end up with is the spec being the thing a person reviews and the agent
+works off, and whether the implementation is still what somebody asked for
+having an answer a machine can give you.
 """
 
 from __future__ import annotations

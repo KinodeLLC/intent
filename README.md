@@ -1,17 +1,17 @@
 # Intent
 
-The specification layer. Scenarios are executable, and goals are pinned to the
-content hashes of the code that satisfies them.
+the spec layer. scenarios are runnable tests, and a goal is pinned to the hash
+of the code that satisfies it.
 
-Part of the [Kinode](../kinode-stack) stack. Lowers to [Canon](../canon).
+part of [kinode](../kinode-stack). lowers to [canon](../canon).
 
-## Install
+## install
 
 ```sh
 pip install -e .
 ```
 
-## A goal
+## example
 
 ```intent
 module billing.spec
@@ -38,53 +38,50 @@ goal "A captured charge can be refunded once, up to its captured amount"
   traces billing.refund at #mzod4ptezmedyw2dfsbywrumek
 ```
 
-## The problem it solves
+## drift
 
-A specification that is only prose drifts from the code, everyone knows it
-drifts, and after a while nobody reads it. Intent makes drift **detectable**
-rather than asking people to prevent it.
+a spec that is only prose drifts away from the code, everybody knows it drifts,
+and after a while nobody opens it. this makes the drift something you find out
+about instead of something people are supposed to prevent
 
-**Scenarios lower to executable Canon tests.** A specification that cannot be
-run is rejected — a goal with no scenarios does not compile.
+scenarios lower to canon tests and they run, so a spec you cannot run is not a
+spec, and a goal with no scenarios on it will not compile
 
 ```
 ok  the specification runs against the implementation: 4/4 scenarios pass
 ```
 
-**Traces are pinned to hashes.** `accept` records the current hash of every
-traced definition. When that definition changes, the goal reports as stale —
-including when every scenario still passes:
+`accept` writes down the current hash of every definition a goal traces to. when
+one of those definitions changes the goal comes back stale, including when every
+scenario still passes, which is the case tests cannot catch because behaviour did
+not change, only the code somebody signed off on
 
 ```
 ok  a traced definition that changes after acceptance reports stale:
     all scenarios still pass, but billing.refund changed #mzod4pte -> #sg5x4d7p
 ```
 
-That is the case a test suite cannot catch: behaviour preserved, but the code
-someone signed off on is no longer the code that is running.
+definitions with no goal tracing to them get listed too
 
-**Untraced code is listed.** Code nobody asked for is as much a finding as a
-goal nobody implemented.
-
-**Non-functional requirements are checked against declared cost**, so
-"must complete within 250ms" is compared to something the compiler already
-knows rather than being aspirational:
+non functional requirements get checked against the cost the function declared,
+so `millis <= 250` is compared to something the compiler already knows rather
+than sitting there as a wish
 
 ```
 FAIL refunds complete promptly:
      billing.refund declares millis 250, which does not satisfy millis <= 100
 ```
 
-## Expectation forms
+## expectations
 
-| Form | Meaning |
+| form | what it does |
 | --- | --- |
-| `expect <expr> is <pattern>` | Lowers to a match; the pattern may bind and nest |
-| `expect <expr>` | The expression must evaluate to `true` |
+| `expect <expr> is <pattern>` | lowers to a match, the pattern can bind and nest |
+| `expect <expr>` | has to come out `true` |
 
-`given name = <expr>` introduces bindings, in order, before the expectation.
+`given name = <expr>` puts bindings in place, in order, before the expectation
 
-## Conformance
+## conformance
 
 ```python
 from intent import parse_intent, conformance, accept, render_acceptance
@@ -97,8 +94,8 @@ results = run_tests(cr, ledger)
 report = conformance(goals, cr, hashes, results)
 print(report.render())
 
-accept(goals, cr, hashes)          # sign off against the current code
-print(render_acceptance(goals))    # re-emit traces pinned to hashes
+accept(goals, cr, hashes)          # sign off against what is there now
+print(render_acceptance(goals))    # traces with the hashes on them, paste back
 ```
 
 ```
@@ -111,12 +108,12 @@ conformance: 4/5 goals satisfied
   2 definitions have no goal: billing.describe, billing.audit_note
 ```
 
-## Tests
+## tests
 
 ```sh
 python tests/smoke_intent.py
 ```
 
-## Licence
+## licence
 
-Apache-2.0. Copyright Kinode.
+Apache-2.0, Kinode.
