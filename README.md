@@ -3,7 +3,7 @@
 the spec layer. scenarios are runnable tests, and a goal is pinned to the hash
 of the code that satisfies it.
 
-part of [kinode](../kinode-stack). lowers to [canon](../canon).
+part of [kinode](https://github.com/KinodeLLC/kinode-stack). lowers to [canon](https://github.com/KinodeLLC/canon).
 
 ## install
 
